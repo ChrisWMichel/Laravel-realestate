@@ -28,8 +28,8 @@ class UpdateListingRequest extends FormRequest
             'city' => ['required'],
             'area_code' => ['required'],
             'street' => ['required'],
-            'street_nr' => ['required', 'integer','min:1','max:1000'],
-            'price' => ['required', 'integer','min:1','max:2000000']
+            'street_nr' => ['required', 'integer','min:1'],
+            'price' => ['required', 'integer','min:1']
         ];
     }
 

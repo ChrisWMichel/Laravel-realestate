@@ -24,12 +24,25 @@ class StoreListingRequest extends FormRequest
         return [
             'beds' => 'required|integer|min:0|max:20',
             'baths' => 'required|integer|min:0|max:20',
-            'area' => 'required|integer|min:1200|max:20000',
+            'area' => 'required|integer|min:1200',
             'city' => 'required',
             'area_code' => 'required',
             'street' => 'required',
-            'street_nr' => 'required|integer|min:1|max:1000',
-            'price' => 'required|integer|min:1|max:2000000'
+            'street_nr' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1'
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'beds' => 'Beds',
+            'baths' => 'Baths',
+            'area' => 'Square Feet',
+            'city' => 'City',
+            'area_code' => 'Area Code',
+            'street' => 'Street Name',
+            'street_nr' => 'Street Number',
+            'price' => 'Price'
         ];
     }
 }

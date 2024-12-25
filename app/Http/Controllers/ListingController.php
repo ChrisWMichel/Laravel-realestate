@@ -6,6 +6,7 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
+//use Illuminate\Support\Facades\Log;
 
 class ListingController extends Controller
 {
@@ -35,6 +36,7 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
+        //Log::info($request->all());
         Listing::create($request->all());
 
         return redirect()->route('listing.index')->with('success', 'Listing created successfully.');
@@ -76,6 +78,10 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+
+        //return redirect()->route('listing.index')->with('success', 'Listing deleted successfully.');
+
+        return redirect()->back()->with('success', 'Listing deleted successfully.');
     }
 }
