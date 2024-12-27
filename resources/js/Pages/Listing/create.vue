@@ -120,7 +120,6 @@
 
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3";
-import { computed, onMounted, ref } from "vue";
 import InputError from "@/Components/InputError.vue";
 
 const form = useForm({
@@ -133,13 +132,6 @@ const form = useForm({
     street_nr: "",
     price: "",
 });
-
-// const csrfToken = ref(null);
-// onMounted(() => {
-//     csrfToken.value = document
-//         .querySelector('meta[name="csrf-token"]')
-//         .getAttribute("content");
-// });
 
 const create = () => {
     //console.log(form);

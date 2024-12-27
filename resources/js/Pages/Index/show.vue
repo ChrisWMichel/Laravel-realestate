@@ -1,11 +1,11 @@
 <template>
     <div>
-        <Head title="Show" />
+        <Head title="Home" />
 
         <div class="container">
             <h1>Show Page</h1>
         </div>
-        <Link :href="route('index')">Home Page</Link>
+        <Link :href="route('home')">Home Page</Link>
     </div>
 </template>
 

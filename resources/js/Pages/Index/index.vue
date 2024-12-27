@@ -5,7 +5,7 @@
         <div class="container mx-auto">
             <h1 class="text-center">Index Page</h1>
         </div>
-        <Link :href="route('show')">Show Page</Link>
+        <Link :href="route('hello')">Show Page</Link>
     </div>
 </template>
 <script setup>

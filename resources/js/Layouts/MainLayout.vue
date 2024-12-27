@@ -13,12 +13,42 @@
                             >Real Estate</Link
                         >
                     </div>
-                    <div>
+                    <div v-if="user" class="flex items-center gap-4">
+                        <div class="text-white">
+                            Welcome {{ user.firstname }}
+                        </div>
+
                         <Link
                             class="btn-primary"
                             :href="route('listing.create')"
                             >+ New Listing</Link
                         >
+
+                        <Link
+                            class="p-1 ml-6 text-sm bg-gray-800 rounded-md hover:bg-gray-600"
+                            :href="route('logout')"
+                            method="DELETE"
+                            as="button"
+                        >
+                            Log Out
+                        </Link>
+                    </div>
+                    <div v-else class="flex items-center gap-2">
+                        <Link
+                            class="p-1 ml-6 text-sm bg-gray-800 rounded-md hover:bg-gray-600"
+                            :href="route('login')"
+                            >Sign In</Link
+                        >
+                        <Link
+                            class="p-1 ml-6 text-sm bg-gray-800 rounded-md hover:bg-gray-600"
+                            :href="route('user-account.create')"
+                            >Register</Link
+                        >
+                    </div>
+                    <div>
+                        <div>
+                            <!-- v-if="page.props.auth.user.name" -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -34,18 +64,23 @@
         </div>
     </div>
 
-    <main class="container px-4 py-8 mx-auto">
+    <main class="container w-full px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <slot></slot>
     </main>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { Link, usePage } from "@inertiajs/vue3";
 
-const page = usePage();
 const showSuccessMessage = ref(false);
 const showErrorMessage = ref(false);
+
+const page = usePage();
+//console.log("page", page);
+
+const user = computed(() => page.props?.auth?.user || null);
+//console.log("user", user);
 
 watch(
     () => page.props?.flash,
