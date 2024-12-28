@@ -16,7 +16,6 @@ Route::resource('listing', ListingController::class)->except('create', 'store', 
 Route::get('login', [AuthController::class, 'create'])->name('login');
 Route::post('login', [AuthController::class, 'store'])->name('login.store');
 Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
-//Route::get('register', [UserAccountController::class, 'create'])->name('register');
 Route::resource('user-account', UserAccountController::class)->only('create', 'store');
 
 

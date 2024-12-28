@@ -6,14 +6,15 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
-//use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth')->except('index', 'show');
-    // }
+    public function __construct()
+    {
+        //$this->middleware('auth')->except('index', 'show');
+        //$this->authorizeResource(Listing::class, 'listing');
+    }
 
     public function index()
     {
@@ -38,8 +39,10 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        //Log::info($request->all());
-        Listing::create($request->all());
+        Listing::create(array_merge(
+            $request->all(),
+            ['by_user_id' => Auth::id()]
+        ));
 
         return redirect()->route('listing.index')->with('success', 'Listing created successfully.');
     }
@@ -49,8 +52,10 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+
         return inertia('Listing/show', [
             'listing' => $listing,
+
         ]);
     }
 
@@ -59,6 +64,7 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
+        //$this->authorize('update', $listing);
         $listing = Listing::findOrFail($id);
         return inertia('Listing/edit', [
             'listing' => $listing,
@@ -70,6 +76,7 @@ class ListingController extends Controller
      */
     public function update(UpdateListingRequest $request, Listing $listing)
     {
+        $this->authorize('update', $listing);
         $listing->update($request->all());
 
         return redirect()->route('listing.index')->with('success', 'Listing updated successfully.');
@@ -80,6 +87,8 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+        $this->authorize('delete', $listing);
+
         $listing->delete();
 
         //return redirect()->route('listing.index')->with('success', 'Listing deleted successfully.');

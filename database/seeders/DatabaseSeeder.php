@@ -20,8 +20,20 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Chris',
             'lastname' => 'Michel',
             'email' => 'chris@email.com',
-        ]);
+            'is_admin' => true,
+        ],
+    );
+    User::factory()->create([
+        'firstname' => 'Andy',
+        'lastname' => 'Anderson',
+        'email' => 'andy@email.com',
+    ]);
 
-        Listing::factory(20)->create();
+        Listing::factory(10)->create([
+            'by_user_id' => 1,
+        ]);
+        Listing::factory(10)->create([
+            'by_user_id' => 2,
+        ]);
     }
 }

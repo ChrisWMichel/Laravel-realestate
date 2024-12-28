@@ -24,14 +24,32 @@
                             >+ New Listing</Link
                         >
 
-                        <Link
+                        <!-- <Link
                             class="p-1 ml-6 text-sm bg-gray-800 rounded-md hover:bg-gray-600"
                             :href="route('logout')"
                             method="DELETE"
                             as="button"
                         >
                             Log Out
-                        </Link>
+                        </Link> -->
+                        <form @submit.prevent="logout" class="inline">
+                            <input
+                                type="hidden"
+                                name="_token"
+                                :value="csrfToken"
+                            />
+                            <input
+                                type="hidden"
+                                name="_method"
+                                value="DELETE"
+                            />
+                            <button
+                                type="submit"
+                                class="p-1 ml-6 text-sm bg-gray-800 rounded-md hover:bg-gray-600"
+                            >
+                                Log Out
+                            </button>
+                        </form>
                     </div>
                     <div v-else class="flex items-center gap-2">
                         <Link
@@ -71,7 +89,7 @@
 
 <script setup>
 import { ref, watch, computed } from "vue";
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link, usePage, router } from "@inertiajs/vue3";
 
 const showSuccessMessage = ref(false);
 const showErrorMessage = ref(false);
@@ -80,7 +98,14 @@ const page = usePage();
 //console.log("page", page);
 
 const user = computed(() => page.props?.auth?.user || null);
-//console.log("user", user);
+// const csrfToken = computed(() =>
+//     document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+// ); //page.props.csrf;
+const csrfToken = computed(() => page.props.csrf);
+
+const logout = () => {
+    router.delete(route("logout"));
+};
 
 watch(
     () => page.props?.flash,
