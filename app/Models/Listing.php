@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,5 +15,53 @@ class Listing extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'by_user_id');
+    }
+
+    public function scopeMostRecent(Builder $query)
+    {
+        $query->orderBy('created_at', 'desc');
+
+        // if ($request->filled('sort_by') && $request->filled('sort_direction')) {
+        //     $listings->orderBy($request->sort_by, $request->sort_direction);
+        // }
+        // else {
+        //     $listings->orderBy('created_at', 'desc');
+        // }
+    }
+
+    public function scopeFilter(Builder $query, array $filters)
+    {
+        $query->when($filters['price_from'] ?? false, function ($query, $price_from) {
+            $query->where('price', '>=', $price_from);
+        });
+
+        $query->when($filters['price_to'] ?? false, function ($query, $price_to) {
+            $query->where('price', '<=', $price_to);
+        });
+
+        $query->when($filters['beds'] ?? false, function ($query, $beds) {
+            if ($beds == 6) {
+                $query->where('beds', '>=', 6);
+            } else {
+                $query->where('beds', $beds);
+            }
+        });
+
+        $query->when($filters['baths'] ?? false, function ($query, $baths) {
+
+            if ($baths == 6) {
+                $query->where('baths', '>=', 6);
+            } else {
+                $query->where('baths', $baths);
+            }
+        });
+
+        $query->when($filters['area_from'] ?? false, function ($query, $area_from) {
+            $query->where('area', '>=', $area_from);
+        });
+
+        $query->when($filters['area_to'] ?? false, function ($query, $area_to) {
+            $query->where('area', '<=', $area_to);
+        });
     }
 }

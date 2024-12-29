@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class ListingController extends Controller
 {
@@ -16,13 +17,18 @@ class ListingController extends Controller
         //$this->authorizeResource(Listing::class, 'listing');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $listings = Listing::all();
 
+        $filters = $request->only([
+            'price_from', 'price_to', 'beds', 'baths', 'area_from', 'area_to'
+        ]);
 
-        return inertia('Listing/index', [
-            'listings' => $listings,
+        $listings = Listing::query()->mostRecent()->filter($filters);
+
+        return Inertia::render('Listing/index', [
+            'listings' => $listings->paginate(10)->withQueryString(),
+            'filters' => $filters,
         ]);
     }
 
