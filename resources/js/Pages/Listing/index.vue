@@ -8,6 +8,7 @@
                 v-for="listing in listings.data"
                 :key="listing.id"
                 :listing="listing"
+                :user="user"
                 class="my-2"
             />
         </div>
@@ -28,6 +29,9 @@ defineProps({
         type: Object,
     },
     filters: {
+        type: Object,
+    },
+    user: {
         type: Object,
     },
 });

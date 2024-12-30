@@ -43,13 +43,13 @@
                         v-model.number="filterForm.area_from"
                         type="text"
                         class="input-filter-l"
-                        placeholder="Area from"
+                        placeholder="Sqft from"
                     />
                     <input
                         v-model.number="filterForm.area_to"
                         type="text"
                         class="input-filter-r"
-                        placeholder="Area to"
+                        placeholder="Sqft to"
                     />
                 </div>
                 <button type="submit" class="text-green-600 btn-normal">

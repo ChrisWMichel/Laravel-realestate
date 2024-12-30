@@ -29,35 +29,37 @@ class ListingController extends Controller
         return Inertia::render('Listing/index', [
             'listings' => $listings->paginate(10)->withQueryString(),
             'filters' => $filters,
+            'user' => Auth::user(),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return inertia('Listing/create');
-    }
+    // public function create()
+    // {
+    //     return inertia('Listing/create');
+    // }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreListingRequest $request)
-    {
-        Listing::create(array_merge(
-            $request->all(),
-            ['by_user_id' => Auth::id()]
-        ));
+    // /**
+    //  * Store a newly created resource in storage.
+    //  */
+    // public function store(StoreListingRequest $request)
+    // {
+    //     Listing::create(array_merge(
+    //         $request->all(),
+    //         ['by_user_id' => Auth::id()]
+    //     ));
 
-        return redirect()->route('listing.index')->with('success', 'Listing created successfully.');
-    }
+    //     return redirect()->route('listing.index')->with('success', 'Listing created successfully.');
+    // }
 
     /**
      * Display the specified resource.
      */
-    public function show(Listing $listing)
+    public function show($id)
     {
+        $listing = Listing::withTrashed()->findOrFail($id);
 
         return inertia('Listing/show', [
             'listing' => $listing,
@@ -68,37 +70,37 @@ class ListingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        //$this->authorize('update', $listing);
-        $listing = Listing::findOrFail($id);
-        return inertia('Listing/edit', [
-            'listing' => $listing,
-        ]);
-    }
+    // public function edit($id)
+    // {
+    //     //$this->authorize('update', $listing);
+    //     $listing = Listing::findOrFail($id);
+    //     return inertia('Listing/edit', [
+    //         'listing' => $listing,
+    //     ]);
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateListingRequest $request, Listing $listing)
-    {
-        $this->authorize('update', $listing);
-        $listing->update($request->all());
+    // public function update(UpdateListingRequest $request, Listing $listing)
+    // {
+    //     $this->authorize('update', $listing);
+    //     $listing->update($request->all());
 
-        return redirect()->route('listing.index')->with('success', 'Listing updated successfully.');
-    }
+    //     return redirect()->route('listing.index')->with('success', 'Listing updated successfully.');
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Listing $listing)
-    {
-        $this->authorize('delete', $listing);
+    // public function destroy(Listing $listing)
+    // {
+    //     $this->authorize('delete', $listing);
 
-        $listing->delete();
+    //     $listing->delete();
 
-        //return redirect()->route('listing.index')->with('success', 'Listing deleted successfully.');
+    //     //return redirect()->route('listing.index')->with('success', 'Listing deleted successfully.');
 
-        return redirect()->back()->with('success', 'Listing deleted successfully.');
-    }
+    //     return redirect()->back()->with('success', 'Listing deleted successfully.');
+    // }
 }

@@ -14,13 +14,16 @@
                         >
                     </div>
                     <div v-if="user" class="flex items-center gap-4">
-                        <div class="text-white">
-                            Welcome {{ user.firstname }}
-                        </div>
+                        <Link
+                            :href="route('realtor.listing.index')"
+                            class="text-white hover:text-yellow-500"
+                        >
+                            {{ user.firstname }} {{ user.lastname }}
+                        </Link>
 
                         <Link
                             class="btn-primary"
-                            :href="route('listing.create')"
+                            :href="route('realtor.listing.create')"
                             >+ New Listing</Link
                         >
 

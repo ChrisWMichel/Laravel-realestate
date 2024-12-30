@@ -6,11 +6,13 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Listing extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $guarded = [];
+    protected $sortable = ['price', 'created_at'];
 
     public function owner()
     {
@@ -63,5 +65,16 @@ class Listing extends Model
         $query->when($filters['area_to'] ?? false, function ($query, $area_to) {
             $query->where('area', '<=', $area_to);
         });
+        $query->when($filters['deleted'] ?? false, function ($query, $deleted) {
+            $query->onlyTrashed();
+        });
+        $query->when($filters['by'] ?? false, function ($query, $by)  use ($filters) {
+            if (in_array($by, $this->sortable)) {
+                $query->orderBy($by, $filters['order'] ?? 'desc');
+            }
+
+        });
     }
+
+
 }
