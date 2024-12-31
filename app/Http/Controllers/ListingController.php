@@ -24,12 +24,15 @@ class ListingController extends Controller
             'price_from', 'price_to', 'beds', 'baths', 'area_from', 'area_to'
         ]);
 
-        $listings = Listing::query()->mostRecent()->filter($filters);
+        $listings = Listing::query()
+        ->mostRecent()
+        ->filter($filters)
+        ->paginate(10)
+        ->withQueryString();
 
         return Inertia::render('Listing/index', [
-            'listings' => $listings->paginate(10)->withQueryString(),
+            'listings' => $listings,
             'filters' => $filters,
-            'user' => Auth::user(),
         ]);
     }
 
@@ -60,6 +63,7 @@ class ListingController extends Controller
     public function show($id)
     {
         $listing = Listing::withTrashed()->findOrFail($id);
+        $listing->load('images');
 
         return inertia('Listing/show', [
             'listing' => $listing,

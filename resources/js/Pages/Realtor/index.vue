@@ -30,38 +30,59 @@
                             class="text-gray-400"
                         />
                     </div>
-                    <div class="flex items-center gap-4">
-                        <a
-                            target="_blank"
-                            :href="route('listing.show', listing.id)"
-                            class="text-gray-400 hover:text-gray-100 btn-outline"
-                        >
-                            Preview
-                        </a>
-                        <Link
-                            :href="route('realtor.listing.edit', listing.id)"
-                            class="text-green-700 hover:text-green-400 btn-outline"
-                        >
-                            Edit
-                        </Link>
-                        <Link
-                            v-if="!listing.deleted_at"
-                            :href="route('realtor.listing.destroy', listing.id)"
-                            as="button"
-                            method="delete"
-                            class="text-red-700 hover:text-red-400 btn-outline"
-                        >
-                            Delete
-                        </Link>
-                        <Link
-                            v-else
-                            :href="route('realtor.listing.restore', listing.id)"
-                            as="button"
-                            method="put"
-                            class="text-yellow-500 hover:text-yellow-300 btn-outline"
-                            >Restore</Link
-                        >
-                    </div>
+                    <section>
+                        <div class="flex items-center gap-4">
+                            <a
+                                target="_blank"
+                                :href="route('listing.show', listing.id)"
+                                class="text-gray-400 hover:text-gray-100 btn-outline"
+                            >
+                                Preview
+                            </a>
+                            <Link
+                                :href="
+                                    route('realtor.listing.edit', listing.id)
+                                "
+                                class="text-green-700 hover:text-green-400 btn-outline"
+                            >
+                                Edit
+                            </Link>
+                            <Link
+                                v-if="!listing.deleted_at"
+                                :href="
+                                    route('realtor.listing.destroy', listing.id)
+                                "
+                                as="button"
+                                method="delete"
+                                class="text-red-700 hover:text-red-400 btn-outline"
+                            >
+                                Delete
+                            </Link>
+                            <Link
+                                v-else
+                                :href="
+                                    route('realtor.listing.restore', listing.id)
+                                "
+                                as="button"
+                                method="put"
+                                class="text-yellow-500 hover:text-yellow-300 btn-outline"
+                                >Restore</Link
+                            >
+                        </div>
+                        <div class="mt-4">
+                            <Link
+                                class="block w-full text-center text-blue-500 hover:text-blue-200 btn-outline"
+                                :href="
+                                    route(
+                                        'realtor.listing.image.create',
+                                        listing.id
+                                    )
+                                "
+                            >
+                                ({{ listing.images_count || 0 }}) Images
+                            </Link>
+                        </div>
+                    </section>
                 </div>
             </BoxShadow>
         </section>

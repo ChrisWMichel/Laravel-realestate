@@ -74,13 +74,31 @@
                 </BoxShadow>
             </div>
             <BoxShadow class="flex items-center w-full md:col-span-7">
-                <div class="w-full font-medium text-center text-gray-500">
-                    no images
-                    <!-- <img
-                    :src="listing.image"
-                    :alt="listing.city"
-                    class="object-cover w-full h-96"
-                /> -->
+                <div
+                    v-if="listing.images.length > 0"
+                    class="grid w-full grid-cols-1 gap-1 md:grid-cols-2"
+                >
+                    <!-- <v-carousel>
+                        <v-carousel-item
+                            v-for="(image, index) in listing.images"
+                            :key="index"
+                            :src="image.path"
+                        >
+                        </v-carousel-item>
+                    </v-carousel> -->
+                    <img
+                        v-for="(image, index) in listing.images"
+                        :key="index"
+                        :src="image.path"
+                        :alt="listing.city"
+                        class="object-cover w-full h-96"
+                    />
+                </div>
+                <div
+                    v-else
+                    class="w-full font-medium text-center text-gray-500"
+                >
+                    No Images
                 </div>
             </BoxShadow>
         </div>

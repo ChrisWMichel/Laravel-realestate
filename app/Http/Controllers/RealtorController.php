@@ -26,6 +26,7 @@ class RealtorController extends Controller
         $listings = Listing::query()
             ->where('by_user_id', Auth::id())
             ->filter($filters)
+            ->withCount('images')
             ->paginate(10)
             ->withQueryString();
 

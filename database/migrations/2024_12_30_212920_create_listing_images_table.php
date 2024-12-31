@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Listing;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,8 @@ return new class extends Migration
     {
         Schema::create('listing_images', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Listing::class, 'listing_id')->constrained('listings')->cascadeOnDelete();
+            $table->string('path');
             $table->timestamps();
         });
     }

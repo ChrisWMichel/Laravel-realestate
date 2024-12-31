@@ -24,14 +24,11 @@ import listing from "@/Pages/Listing/Index/Components/listing.vue";
 import PaginationList from "@/Components/UI/PaginationList.vue";
 import filtersListing from "@/Pages/Listing/Index/Components/filtersListing.vue";
 
-defineProps({
+const props = defineProps({
     listings: {
         type: Object,
     },
     filters: {
-        type: Object,
-    },
-    user: {
         type: Object,
     },
 });

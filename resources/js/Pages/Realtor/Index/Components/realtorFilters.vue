@@ -11,7 +11,7 @@
                 <label for="deleted">Deleted</label>
             </div>
             <div>
-                <select class="w-24 input-filter-l" v-model="filterForm.by">
+                <select class="w-27 input-filter-l" v-model="filterForm.by">
                     <option value="created_at">Created</option>
                     <option value="price">Price</option>
                 </select>
