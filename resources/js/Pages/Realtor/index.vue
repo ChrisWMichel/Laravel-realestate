@@ -6,7 +6,10 @@
         <section>
             <realtorFilters :filters="filters" />
         </section>
-        <section class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <section
+            v-if="listings.data.length > 0"
+            class="grid grid-cols-1 gap-4 lg:grid-cols-2"
+        >
             <BoxShadow
                 v-for="listing in listings.data"
                 :key="listing.id"
@@ -103,6 +106,10 @@
                 </div>
             </BoxShadow>
         </section>
+        <EmptyState v-else>
+            You have no listings. Create a new listing by clicking the 'New
+            Listing' button.
+        </EmptyState>
         <section
             v-if="listings.data.length > 0"
             class="flex justify-center w-full my-4"
@@ -120,6 +127,7 @@ import ListingPrice from "@/Components/UI/ListingPrice.vue";
 import realtorFilters from "@/Pages/Realtor/Index/Components/realtorFilters.vue";
 import PaginationList from "@/Components/UI/PaginationList.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
+import EmptyState from "@/Components/UI/emptyState.vue";
 
 const props = defineProps({
     user: {

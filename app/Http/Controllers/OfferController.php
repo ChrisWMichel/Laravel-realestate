@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Listing;
 use App\Models\Offer;
+use App\Models\Listing;
 use Illuminate\Http\Request;
+use App\Notifications\OfferMade;
 
 class OfferController extends Controller
 {
@@ -12,7 +13,7 @@ class OfferController extends Controller
     public function store(Listing $listing, Request $request)
     {
         $this->authorize('view', $listing);
-        $listing->offers()->create(
+       $offer = $listing->offers()->create(
             $request->validate([
                 'amount' => 'required|integer|min:1',
             ]) + [
@@ -20,6 +21,7 @@ class OfferController extends Controller
                 'listing_id' => $listing->id
             ]
         );
+        $listing->owner->notify(new OfferMade($offer));
 
         return redirect()->back()->with('success', 'Offer submitted successfully.');
     }

@@ -15,6 +15,19 @@
                     </div>
                     <div v-if="user" class="flex items-center gap-4">
                         <Link
+                            :href="route('notification.index')"
+                            class="relative py-2 pr-2 text-lg text-gray-900"
+                        >
+                            🔔
+                            <div
+                                v-if="notificationCount > 0"
+                                class="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-medium text-white bg-red-500 border border-white rounded-full"
+                            >
+                                {{ notificationCount }}
+                            </div>
+                        </Link>
+
+                        <Link
                             :href="route('realtor.listing.index')"
                             class="text-white hover:text-yellow-500"
                         >
@@ -108,6 +121,10 @@ const csrfToken = computed(() => page.props.csrf);
 const logout = () => {
     router.delete(route("logout"));
 };
+
+const notificationCount = computed(() => {
+    return Math.min(page.props.auth.user.notificationCount, 9);
+});
 
 watch(
     () => page.props?.flash,

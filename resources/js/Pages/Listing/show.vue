@@ -81,19 +81,11 @@
                 />
                 <OfferMade v-if="user && offerMade" :offerMade="offerMade" />
             </div>
-            <BoxShadow class="flex items-center w-full md:col-span-7">
-                <div
-                    v-if="listing.images.length > 0"
-                    class="grid w-full grid-cols-1 gap-1 md:grid-cols-2"
-                >
-                    <!-- <v-carousel>
-                        <v-carousel-item
-                            v-for="(image, index) in listing.images"
-                            :key="index"
-                            :src="image.path"
-                        >
-                        </v-carousel-item>
-                    </v-carousel> -->
+            <BoxShadow
+                v-if="listing.images.length > 0"
+                class="flex items-center w-full md:col-span-7"
+            >
+                <div class="grid w-full grid-cols-1 gap-1 md:grid-cols-2">
                     <img
                         v-for="(image, index) in listing.images"
                         :key="index"
@@ -102,13 +94,10 @@
                         class="object-cover w-full h-96"
                     />
                 </div>
-                <div
-                    v-else
-                    class="w-full font-medium text-center text-gray-500"
-                >
-                    No Images
-                </div>
             </BoxShadow>
+            <EmptyState v-else class="flex items-center w-full md:col-span-7">
+                No images available
+            </EmptyState>
         </div>
     </div>
 </template>
@@ -123,6 +112,7 @@ import OfferMade from "@/Pages/Listing/Show/Components/offerMade.vue";
 import { Head, usePage } from "@inertiajs/vue3";
 import { ref, computed } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
+import EmptyState from "@/Components/UI/emptyState.vue";
 
 const intrestRate = ref(2.5);
 const duration = ref(25);

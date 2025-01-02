@@ -12,6 +12,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
         Listing::class => ListingPolicy::class,
+        'Illuminate\Notifications\DatabaseNotification' => 'App\Policies\NotificationPolicy'
     ];
     /**
      * Register services.
