@@ -31,6 +31,9 @@ const props = defineProps({
     filters: {
         type: Object,
     },
+    user: {
+        type: Object,
+    },
 });
 </script>
 

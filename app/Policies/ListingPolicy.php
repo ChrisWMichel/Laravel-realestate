@@ -28,7 +28,12 @@ class ListingPolicy
      */
     public function view(?User $user, Listing $listing): bool
     {
-        return true;
+        //return true;
+       // return $user?->id === $listing->by_user_id;
+        if($listing->by_user_id === $user?->id){
+            return true;
+        }
+        return $listing->sold_at === null;
     }
 
     /**
@@ -44,7 +49,7 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        return $user->id === $listing->by_user_id
+        return ($user->id === $listing->by_user_id && $listing->sold_at === null)
             ? Response::allow()
             : Response::deny('You do not own this listing.');
     }

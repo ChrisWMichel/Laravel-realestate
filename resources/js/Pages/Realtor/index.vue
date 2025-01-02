@@ -17,6 +17,12 @@
                 >
                     <div :class="{ 'opacity-50': listing.deleted_at }">
                         <div
+                            class="inline-block p-1 mb-2 text-xs font-bold text-green-500 uppercase border border-green-300 border-dashed rounded-md"
+                            v-if="listing.sold_at"
+                        >
+                            sold
+                        </div>
+                        <div
                             class="items-center gap-2 text-xl font-bold xl:flex"
                         >
                             <ListingPrice
@@ -40,6 +46,7 @@
                                 Preview
                             </a>
                             <Link
+                                v-if="!listing.sold_at"
                                 :href="
                                     route('realtor.listing.edit', listing.id)
                                 "
@@ -80,6 +87,16 @@
                                 "
                             >
                                 ({{ listing.images_count || 0 }}) Images
+                            </Link>
+                        </div>
+                        <div class="mt-4">
+                            <Link
+                                class="block w-full text-center text-blue-500 hover:text-blue-200 btn-outline"
+                                :href="
+                                    route('realtor.listing.show', listing.id)
+                                "
+                            >
+                                ({{ listing.offers_count || 0 }}) Offers
                             </Link>
                         </div>
                     </section>

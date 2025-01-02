@@ -12,7 +12,7 @@ class RealtorController extends Controller
 {
     public function __construct()
     {
-        //$this->authorizeResource(Listing::class, 'listing');
+        $this->authorizeResource(Listing::class, 'listing');
     }
     /**
      * Display a listing of the resource.
@@ -27,6 +27,7 @@ class RealtorController extends Controller
             ->where('by_user_id', Auth::id())
             ->filter($filters)
             ->withCount('images')
+            ->withCount('offers')
             ->paginate(10)
             ->withQueryString();
 
@@ -55,15 +56,17 @@ class RealtorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Listing $listing)
     {
-        //
+        return inertia('Realtor/show', [
+            'listing' => $listing->load( 'offers', 'offers.user'),
+        ]);
     }
 
-    public function edit($id)
+    public function edit(Listing $listing)
     {
-        //$this->authorize('update', $listing);
-        $listing = Listing::withTrashed()->findOrFail($id);
+        $this->authorize('update', $listing);
+        //$listing = Listing::withTrashed()->findOrFail($id);
         return inertia('Realtor/edit', [
             'listing' => $listing,
         ]);

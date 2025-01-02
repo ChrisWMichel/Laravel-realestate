@@ -25,9 +25,19 @@ class Listing extends Model
         return $this->hasMany(ListingImage::class);
     }
 
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class);
+    }
+
     public function scopeMostRecent(Builder $query)
     {
         $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopeWithoutSold(Builder $query)
+    {
+        $query->whereNull('sold_at');
     }
 
     public function scopeFilter(Builder $query, array $filters)

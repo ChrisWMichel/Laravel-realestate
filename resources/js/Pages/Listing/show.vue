@@ -72,6 +72,14 @@
                         </div>
                     </div>
                 </BoxShadow>
+
+                <MakeOffer
+                    v-if="user && !offerMade"
+                    @offer-updated="offer = $event"
+                    :price="listing.price"
+                    :listingId="listing.id"
+                />
+                <OfferMade v-if="user && offerMade" :offerMade="offerMade" />
             </div>
             <BoxShadow class="flex items-center w-full md:col-span-7">
                 <div
@@ -110,8 +118,10 @@ import BoxShadow from "@/Components/UI/BoxShadow.vue";
 import ListingAddress from "@/Components/UI/ListingAddress.vue";
 import ListingAttribute from "@/Components/UI/ListingAttribute.vue";
 import ListingPrice from "@/Components/UI/ListingPrice.vue";
-import { Head } from "@inertiajs/vue3";
-import { ref } from "vue";
+import MakeOffer from "@/Pages/Listing/Show/Components/makeOffer.vue";
+import OfferMade from "@/Pages/Listing/Show/Components/offerMade.vue";
+import { Head, usePage } from "@inertiajs/vue3";
+import { ref, computed } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 
 const intrestRate = ref(2.5);
@@ -121,12 +131,21 @@ const props = defineProps({
     listing: {
         type: Object,
     },
+    offerMade: {
+        type: Object,
+    },
 });
+const offer = ref(props.listing.price);
+
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
-    props.listing.price,
+    offer,
     intrestRate,
     duration
 );
+
+// TODO: Comment out the following code for production. Remove 'user' from the v-if in the MakeOffer component
+const page = usePage();
+const user = computed(() => page.props?.auth?.user || null);
 </script>
 
 <style></style>

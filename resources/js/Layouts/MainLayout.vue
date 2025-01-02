@@ -98,7 +98,6 @@ const showSuccessMessage = ref(false);
 const showErrorMessage = ref(false);
 
 const page = usePage();
-//console.log("page", page);
 
 const user = computed(() => page.props?.auth?.user || null);
 // const csrfToken = computed(() =>
