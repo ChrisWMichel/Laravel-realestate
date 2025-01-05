@@ -9,7 +9,7 @@
                         >
                     </div>
                     <div class="link-style">
-                        <Link class="font-bold" :href="route('listing.index')"
+                        <Link class="font-bold" :href="route('home')"
                             >Real Estate</Link
                         >
                     </div>

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'firstname' => 'Chris',
             'lastname' => 'Michel',
-            'email' => 'christopherw.michel@gmail.com',
+            'email' => 'chris@email.com',
             'is_admin' => true,
         ],
         );
@@ -29,17 +29,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'andy@email.com',
         ]);
 
-        User::factory()->create([
-            'firstname' => 'Brian',
-            'lastname' => 'Buller',
-            'email' => 'brian@email.com',
-        ]);
+        // User::factory()->create([
+        //     'firstname' => 'Brian',
+        //     'lastname' => 'Buller',
+        //     'email' => 'brian@email.com',
+        // ]);
 
-        Listing::factory(10)->create([
+        Listing::factory(12)->create([
             'by_user_id' => 2,
         ]);
-        Listing::factory(10)->create([
-            'by_user_id' => 3,
-        ]);
+        // Listing::factory(10)->create([
+        //     'by_user_id' => 3,
+        // ]);
     }
 }

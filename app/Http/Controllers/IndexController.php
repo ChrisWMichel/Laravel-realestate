@@ -9,13 +9,13 @@ class IndexController extends Controller
 {
     public function index()
     {
-        //dd(Auth::check());
-        return Inertia::render(
-            'Index/index',
-            [
-                'message' => 'Hello from Laravel!'
-            ]
-        );
+         $phpVersion = phpversion();
+        $laravelVersion = app()->version();
+
+        return Inertia::render('Index/index', [
+            'phpVersion' => $phpVersion,
+            'laravelVersion' => $laravelVersion,
+        ]);
     }
 
     public function show()

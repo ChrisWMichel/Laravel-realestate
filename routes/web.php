@@ -1,9 +1,7 @@
 <?php
 
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-//use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OfferController;
@@ -15,10 +13,9 @@ use App\Http\Controllers\ListingImageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationSeenController;
 use App\Http\Controllers\RealtorAcceptOfferController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/hello', [IndexController::class, 'show'])->name('hello');
+//Route::get('/hello', [IndexController::class, 'show'])->name('hello');
 
 Route::resource('listing', ListingController::class)->only('index', 'show');
 
