@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Auth\Access\HandlesAuthorization;
+//use Illuminate\Auth\Access\HandlesAuthorization;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+//use Illuminate\Auth\Access\Response;
 
 class NotificationPolicy
 {

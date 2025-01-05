@@ -2,7 +2,7 @@
 
 ## This is a reale-estate app:
 
-### - **Laravel (with Breeze)**
+### - **Laravel **
 
 ### - **VueJS/Inertia**
 

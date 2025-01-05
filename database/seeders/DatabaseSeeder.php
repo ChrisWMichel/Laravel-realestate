@@ -19,21 +19,27 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'firstname' => 'Chris',
             'lastname' => 'Michel',
-            'email' => 'chris@email.com',
+            'email' => 'christopherw.michel@gmail.com',
             'is_admin' => true,
         ],
-    );
-    User::factory()->create([
-        'firstname' => 'Andy',
-        'lastname' => 'Anderson',
-        'email' => 'andy@email.com',
-    ]);
+        );
+        User::factory()->create([
+            'firstname' => 'Andy',
+            'lastname' => 'Anderson',
+            'email' => 'andy@email.com',
+        ]);
+
+        User::factory()->create([
+            'firstname' => 'Brian',
+            'lastname' => 'Buller',
+            'email' => 'brian@email.com',
+        ]);
 
         Listing::factory(10)->create([
-            'by_user_id' => 1,
+            'by_user_id' => 2,
         ]);
         Listing::factory(10)->create([
-            'by_user_id' => 2,
+            'by_user_id' => 3,
         ]);
     }
 }

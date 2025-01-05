@@ -12,6 +12,9 @@ class OfferController extends Controller
 
     public function store(Listing $listing, Request $request)
     {
+        if($listing->by_user_id === $request->user()->id){
+            return redirect()->back()->with('error', 'You cannot make an offer on your own listing.');
+        }
         $this->authorize('view', $listing);
        $offer = $listing->offers()->create(
             $request->validate([

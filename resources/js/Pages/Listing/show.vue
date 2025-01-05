@@ -74,7 +74,7 @@
                 </BoxShadow>
 
                 <MakeOffer
-                    v-if="user && !offerMade"
+                    v-if="user && !offerMade && user.id !== listing.by_user_id"
                     @offer-updated="offer = $event"
                     :price="listing.price"
                     :listingId="listing.id"
@@ -125,6 +125,7 @@ const props = defineProps({
         type: Object,
     },
 });
+
 const offer = ref(props.listing.price);
 
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(

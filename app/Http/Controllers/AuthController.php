@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
@@ -29,6 +30,25 @@ class AuthController extends Controller
         } catch (ValidationException $e) {
             return back()->withErrors($e->errors())->withInput();
         }
+    }
+
+    public function resendVerification(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'User not found for this email.']);
+
+        }
+        if ($user->hasVerifiedEmail()) {
+            return back()->with('message', 'Email already verified. Please Log in.');
+        }
+
+        $user->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
     }
 
 
