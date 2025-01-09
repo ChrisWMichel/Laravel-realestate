@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OfferController;
@@ -67,3 +68,10 @@ Route::post('/email/resend', [AuthController::class, 'resendVerification'])
     ->name('verification.resend');
 
 
+    Route::get('/clear-cache', function() {
+        Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('route:cache');
+        Artisan::call('view:clear');
+        return "Cache is cleared";
+    });
