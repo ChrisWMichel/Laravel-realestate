@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d128313f45e6cd6e4caad3fc527f696e",
+    "content-hash": "a5624896f9a7efc9d7136a5c3db2e775",
     "packages": [
         {
             "name": "brick/math",
@@ -2142,6 +2142,56 @@
                 }
             ],
             "time": "2024-12-08T08:18:47+00:00"
+        },
+        {
+            "name": "litespeed/lscache-laravel",
+            "version": "v1.3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/litespeedtech/lscache-laravel.git",
+                "reference": "c9b6057bd8495c951ea3a8e7562445825e677613"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/litespeedtech/lscache-laravel/zipball/c9b6057bd8495c951ea3a8e7562445825e677613",
+                "reference": "c9b6057bd8495c951ea3a8e7562445825e677613",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.1|^6|^7|^8|^9|^10.0|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "LSCache": "Litespeed\\LSCache\\LSCache"
+                    },
+                    "providers": [
+                        "Litespeed\\LSCache\\LSCacheServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Litespeed\\LSCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Lucas Rolff",
+                    "email": "lrolff@litespeedtech.com"
+                }
+            ],
+            "description": "LSCache Implementation for Laravel",
+            "support": {
+                "issues": "https://github.com/litespeedtech/lscache-laravel/issues",
+                "source": "https://github.com/litespeedtech/lscache-laravel/tree/v1.3.6"
+            },
+            "time": "2024-03-11T08:52:38+00:00"
         },
         {
             "name": "monolog/monolog",
