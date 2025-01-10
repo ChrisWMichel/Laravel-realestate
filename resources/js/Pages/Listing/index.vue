@@ -1,20 +1,18 @@
 <template>
     <filtersListing :filters="filters" />
-    <div>
-        <Head title="Listings" />
 
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <listing
-                v-for="listing in listings.data"
-                :key="listing.id"
-                :listing="listing"
-                :user="user"
-                class="my-2"
-            />
-        </div>
-        <div v-if="listings.data.length > 0" class="flex justify-center my-4">
-            <PaginationList :Links="listings.links" />
-        </div>
+    <Head title="Listings" />
+
+    <div class="grid grid-cols-1 gap-4 mt-8 md:grid-cols-2 lg:grid-cols-3">
+        <listing
+            v-for="listing in listings.data"
+            :key="listing.id"
+            :listing="listing"
+            :user="user"
+        />
+    </div>
+    <div v-if="listings.data.length > 0" class="flex justify-center my-4">
+        <PaginationList :Links="listings.links" />
     </div>
 </template>
 
