@@ -14,13 +14,13 @@
 
         <!-- Scripts -->
         @routes
-        @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
-        {{-- @if (env('APP_ENV') === 'production')
+        {{-- @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"]) --}}
+        @if (env('APP_ENV') === 'production')
             <link rel="stylesheet" href="{{ asset('build/assets/app-B_0bgqe2.css') }}">
             <script type="module" src="{{ asset('build/assets/app-CLRqkN4u.js') }}"></script>
         @else
             @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
-        @endif --}}
+        @endif
         @inertiaHead
     </head>
     <body class="font-sans antialiased text-gray-900 bg-gray-100 dark:bg-gray-800 dark:text-gray-200">
