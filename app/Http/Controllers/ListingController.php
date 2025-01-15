@@ -27,7 +27,7 @@ class ListingController extends Controller
         return Inertia::render('Listing/index', [
             'listings' => $listings,
             'filters' => $filters,
-            'user' => Auth::user(),
+            //'user' => Auth::user(),
         ]);
     }
 

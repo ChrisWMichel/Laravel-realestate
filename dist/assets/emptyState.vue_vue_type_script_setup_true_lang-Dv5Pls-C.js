@@ -1,0 +1,1 @@
+import{B as t}from"./BoxShadow-DYtGYpyc.js";import{i as o,o as a,j as s,w as r,b as n,y as c}from"./app-CEg91Qre.js";const l={class:"w-full font-medium text-center text-gray-400"},p=o({__name:"emptyState",setup(_){return(e,m)=>(a(),s(t,null,{default:r(()=>[n("div",l,[c(e.$slots,"default")])]),_:3}))}});export{p as _};
