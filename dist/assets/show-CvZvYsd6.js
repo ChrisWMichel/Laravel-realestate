@@ -1,1 +1,0 @@
-import{i as r,o as n,c as l,a,u as o,d,b as t,w as u,e as i,P as m}from"./app-CEg91Qre.js";const c=r({__name:"show",setup(f){return(s,e)=>(n(),l("div",null,[a(o(d),{title:"Home"}),e[1]||(e[1]=t("div",{class:"container"},[t("h1",null,"Show Page")],-1)),a(o(m),{href:s.route("home")},{default:u(()=>e[0]||(e[0]=[i("Home Page")])),_:1},8,["href"])]))}});export{c as default};

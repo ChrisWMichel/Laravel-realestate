@@ -2,23 +2,23 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
-    <IfModule mod_headers.c>
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Serve existing files from the "public/storage" directory
+RewriteRule ^storage/(.*)$ storage/$1 [L]
+# All other requests should be handled by Laravel
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+</IfModule>
+
+ <IfModule mod_headers.c>
         Header set Access-Control-Allow-Origin "*"
         Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
         Header set Access-Control-Allow-Headers "Content-Type"
     </IfModule>
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-
-    # Serve existing files from the "public" directory
-    RewriteRule ^storage/(.*)$ /storage/$1 [L]
-
-    # All other requests should be handled by Laravel
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [L]
-</IfModule>
 
 
     <FilesMatch "\.(css)$">

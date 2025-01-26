@@ -2,8 +2,10 @@
     <filtersListing :filters="filters" />
 
     <Head title="Listings" />
+    <h1>Listings - laravel-realestate</h1>
 
     <div class="grid grid-cols-1 gap-4 mt-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- listing in listings.data -->
         <listing
             v-for="listing in listings.data"
             :key="listing.id"
@@ -13,6 +15,10 @@
     </div>
     <div v-if="listings.data.length > 0" class="flex justify-center my-4">
         <PaginationList :Links="listings.links" />
+    </div>
+    <div>
+        <h1>Listing - public_html</h1>
+        {{ listings }}
     </div>
 </template>
 

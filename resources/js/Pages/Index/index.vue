@@ -6,6 +6,9 @@
                 <h1 class="text-3xl font-bold text-gray-400">
                     Welcome to my app!
                 </h1>
+                <h1 class="text-3xl font-bold text-gray-400">
+                    Welcome to my app!
+                </h1>
                 <p class="text-gray-200">
                     Laravel version is {{ laravelVersion }} and PHP version is
                     {{ phpVersion }}.
