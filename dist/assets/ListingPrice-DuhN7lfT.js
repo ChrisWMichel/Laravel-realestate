@@ -1,1 +1,0 @@
-import{m as c,o as n,c as o,t as s}from"./app-BH9Zif6u.js";const i={__name:"ListingPrice",props:{price:{type:[String,Number],required:!0}},setup(e){const r=e,t=c(()=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(r.price));return(a,p)=>(n(),o("span",null,s(t.value),1))}};export{i as _};

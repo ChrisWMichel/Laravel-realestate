@@ -28,6 +28,7 @@ import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 const props = defineProps({
     listing: {
         type: Object,
+        required: true,
     },
 });
 const page = usePage();

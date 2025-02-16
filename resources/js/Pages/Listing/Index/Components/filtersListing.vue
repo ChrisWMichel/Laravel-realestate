@@ -105,5 +105,3 @@ const clear = () => {
     filter();
 };
 </script>
-
-<style></style>
