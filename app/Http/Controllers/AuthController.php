@@ -34,32 +34,33 @@ class AuthController extends Controller
 
     public function resendVerification(Request $request)
     {
+        
         $request->validate(['email' => 'required|email']);
 
         $user = User::where('email', $request->email)->first();
-
+        
         if (!$user) {
-            return back()->withErrors(['email' => 'User not found for this email.']);
+            return back()->withErrors(['error' => 'User not found for this email.']);
 
         }
         if ($user->hasVerifiedEmail()) {
-            return back()->with('message', 'Email already verified. Please Log in.');
+            return back()->with('success', 'Email already verified. Please Log in.');
         }
 
-        $user->sendEmailVerificationNotification();
-
-        return back()->with('message', 'Verification link sent!');
+        try {
+            $user->sendEmailVerificationNotification();
+        } catch (\Exception $e) {
+            return back()->withErrors(['email' => 'Failed to send verification email.']);
+        }
+        return back()->with('success', 'Verification link sent!');
     }
 
 
     public function destroy(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect(route('listing.index'));
     }
 }

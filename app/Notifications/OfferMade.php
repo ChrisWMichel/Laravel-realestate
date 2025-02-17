@@ -37,7 +37,7 @@ class OfferMade extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $formattedAmount = number_format($this->offer->amount, 2);
+        $formattedAmount = '$' . number_format($this->offer->amount, 2);
         return (new MailMessage)
                     ->line("You have received a new offer ({$formattedAmount}) on your listing.")
                     ->action('Go to listing', route('realtor.listing.show', $this->offer->listing->id))

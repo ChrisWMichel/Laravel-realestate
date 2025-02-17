@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import BoxShadow from "@/Components/UI/BoxShadow.vue";
 import ListingPrice from "@/Components/UI/ListingPrice.vue";
 import { computed } from "vue";

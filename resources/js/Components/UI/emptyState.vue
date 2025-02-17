@@ -6,7 +6,7 @@
     </BoxShadow>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import BoxShadow from "./BoxShadow.vue";
 </script>
 

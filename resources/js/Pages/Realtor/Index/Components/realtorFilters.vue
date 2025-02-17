@@ -29,7 +29,7 @@
     </form>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { reactive, watch, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { debounce } from "lodash";

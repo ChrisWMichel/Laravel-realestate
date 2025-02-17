@@ -8,6 +8,7 @@
             <Link
                 :href="route('verification.resend')"
                 method="post"
+                :data="{ email }"
                 class="text-blue-500 underline"
             >
                 click here to request another </Link
@@ -28,8 +29,12 @@ import { Head, Link, usePage } from "@inertiajs/vue3";
 import BoxShadow from "@/Components/UI/BoxShadow.vue";
 
 const page = usePage();
-const status = ref(page.props.flash?.status || null);
+const status = ref(page.props.flash?.success || null);
 const errorMessage = ref(page.props.flash?.error || null);
+
+// Extract email from URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get("email");
 
 status.value = null;
 errorMessage.value = null;

@@ -44,7 +44,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import BoxShadow from "@/Components/UI/BoxShadow.vue";
 import offer from "@/Pages/Realtor/Show/Components/offer.vue";

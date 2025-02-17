@@ -58,7 +58,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import ListingPrice from "@/Components/UI/ListingPrice.vue";
 import PaginationList from "@/Components/UI/PaginationList.vue";
 import emptyState from "@/Components/UI/emptyState.vue";
@@ -68,7 +68,7 @@ defineProps({
     notifications: Object,
 });
 
-const formatDate = (date: string) => {
+const formatDate = (date) => {
     return new Date(date).toLocaleDateString();
 };
 </script>
