@@ -55,7 +55,9 @@ class ListingImageController extends Controller
     {
         // TODO: Change the URL for the images when deploying to production
         //$relativePath = str_replace('http://127.0.0.1:8000/storage/', '', $image->path);
-        $relativePath = str_replace('https://realtor.cwm-portfolio.com/storage/', '', $image->path);
+        //$relativePath = str_replace('https://michel-5.com/storage/', '', $image->path);
+        $appUrl = config('app.url');
+        $relativePath = str_replace($appUrl . '/storage/', '', $image->path);
 
         //Storage::disk('public')->delete($image->path);
         Storage::disk('public')->delete($relativePath);
