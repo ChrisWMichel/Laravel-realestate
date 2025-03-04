@@ -16,7 +16,7 @@
                 </div>
             </BoxShadow>
             <div v-else class="items-center w-full md:col-span-7">
-                <offer
+                <make-offer
                     v-for="(offer, index) in listing.offers"
                     :key="index"
                     :offer="offer"
@@ -47,7 +47,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import BoxShadow from "@/Components/UI/BoxShadow.vue";
-import offer from "@/Pages/Realtor/Show/Components/offer.vue";
+import makeOffer from "@/Pages/Realtor/Show/Components/makeOffer.vue";
 import ListingPrice from "@/Components/UI/ListingPrice.vue";
 import ListingAttribute from "@/Components/UI/ListingAttribute.vue";
 import ListingAddress from "@/Components/UI/ListingAddress.vue";
