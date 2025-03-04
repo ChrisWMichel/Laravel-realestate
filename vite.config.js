@@ -17,6 +17,14 @@ export default defineConfig(({ command, mode }) => ({
             },
         }),
     ],
-    build: { outDir: "dist", manifest: true },
+    build: {
+        outDir: "public/build/.vite", // Ensure the output directory is aligned with Laravel
+        manifest: true,
+        rollupOptions: {
+            input: {
+                app: "resources/js/app.js", // Ensure this matches your entry point
+            },
+        },
+    },
     resolve: { alias: { "@": "/resources/js" } },
 }));
