@@ -1,0 +1,1 @@
+import{h as r,o as n,c as l,a,u as o,m,b as t,w as u,d,P as f}from"./app-_5HEVdpk.js";const c=r({__name:"show",setup(i){return(s,e)=>(n(),l("div",null,[a(o(m),{title:"Home"}),e[1]||(e[1]=t("div",{class:"container"},[t("h1",null,"Show Page")],-1)),a(o(f),{href:s.route("home")},{default:u(()=>e[0]||(e[0]=[d("Home Page")])),_:1},8,["href"])]))}});export{c as default};
