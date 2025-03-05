@@ -18,11 +18,11 @@ export default defineConfig(({ command, mode }) => ({
         }),
     ],
     build: {
-        outDir: "public/build/.vite", // Ensure the output directory is aligned with Laravel
+        outDir: "public/build",
         manifest: true,
         rollupOptions: {
             input: {
-                app: "resources/js/app.js", // Ensure this matches your entry point
+                app: "resources/js/app.js",
             },
         },
     },
