@@ -18,7 +18,7 @@ export default defineConfig(({ command, mode }) => ({
         }),
     ],
     build: {
-        outDir: "public/build",
+        outDir: "build",
         manifest: true,
         rollupOptions: {
             input: {
