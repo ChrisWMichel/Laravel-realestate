@@ -23,9 +23,6 @@
                     :listing-price="listing.price"
                     :is-sold="listing.sold_at !== null"
                 />
-                <span class="text-lg text-gray-400"
-                    >Sorry, 'accepting' an offer is not working right now.</span
-                >
             </div>
             <div class="md:col-span-5">
                 <BoxShadow>
