@@ -49,6 +49,7 @@
 //import { computed } from "vue";
 import { Head, useForm, usePage, Link } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
+// adding this comment to replace this page on github
 
 const form = useForm({
     email: null,
