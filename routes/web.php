@@ -75,3 +75,7 @@ Route::post('/email/resend', [AuthController::class, 'resendVerification'])
         Artisan::call('view:clear');
         return "Cache is cleared";
     });
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
