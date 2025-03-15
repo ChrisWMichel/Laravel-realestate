@@ -46,7 +46,7 @@ Route::resource('user-account', UserAccountController::class)->only('create', 's
 
 Route::get('/email/verify', function(){
     return Inertia::render('Auth/VerifyEmail');
-})->middleware('auth')->name('verification.notice');
+})->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (VerifyEmailRequest  $request) {
     try {
