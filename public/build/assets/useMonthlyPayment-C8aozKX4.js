@@ -1,0 +1,1 @@
+import{l as o,q as t}from"./app-BgXsYvI_.js";const h=(n,l,s)=>{const m=o(()=>{const e=t(n)?n.value:n,u=(t(l)?l.value:l)/100/12,p=(t(s)?s.value:s)*12;return e*u/(1-Math.pow(1+u,-p))}),a=o(()=>{const e=(t(s)?s.value:s)*12;return m.value*e}),c=o(()=>{const e=t(n)?n.value:n;return a.value-e});return{monthlyPayment:m,totalPaid:a,totalInterest:c}};export{h as u};
