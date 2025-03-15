@@ -18,6 +18,7 @@ class ListingImage extends Model
 
     public function getPathAttribute()
     {
-        return asset("storage/{$this->attributes['path']}");
+        //return asset("storage/{$this->attributes['path']}");
+        return asset($this->attributes['path']);
     }
 }

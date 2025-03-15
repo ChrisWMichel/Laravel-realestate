@@ -34,16 +34,17 @@ class ListingImageController extends Controller
                 'images.*.max' => 'The image must not be greater than 5MB.'
             ]);
             foreach ($request->file('images') as $image) {
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images'), $filename);
 
-                $path = $image->store('listing-images', 'public');
-
-                // ListingImage::create([
-                //     'listing_id' => $listing->id,
-                //     'path' => $path
-                // ]);
                 $listing->images()->save(new ListingImage([
-                    'path' => $path
+                    'path' => 'images/' . $filename
                 ]));
+                //$path = $image->store('listing-images', 'public');
+
+                // $listing->images()->save(new ListingImage([
+                //     'path' => $path
+                // ]));
             }
         }
 
@@ -53,13 +54,10 @@ class ListingImageController extends Controller
 
     public function destroy($listing, ListingImage $image)
     {
-        // TODO: Change the URL for the images when deploying to production
-        //$relativePath = str_replace('http://127.0.0.1:8000/storage/', '', $image->path);
-        //$relativePath = str_replace('https://michel-5.com/storage/', '', $image->path);
+
         $appUrl = config('app.url');
         $relativePath = str_replace($appUrl . '/storage/', '', $image->path);
 
-        //Storage::disk('public')->delete($image->path);
         Storage::disk('public')->delete($relativePath);
         $image->delete();
         return redirect()->back()->with('success', 'Image deleted successfully.');
