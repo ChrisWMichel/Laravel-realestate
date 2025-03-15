@@ -17,7 +17,7 @@ test('users can authenticate using the login screen', function () {
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('listing.index', absolute: false));
 });
 
 test('users can not authenticate with invalid password', function () {
@@ -32,8 +32,14 @@ test('users can not authenticate with invalid password', function () {
 });
 
 test('users can logout', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create(); // Create a test user
+
+    // Send a DELETE request to the logout route
     $response = $this->actingAs($user)->delete('/logout');
+
+    // Assert that the user is no longer authenticated
     $this->assertGuest();
-    $response->assertRedirect('/');
+
+    // Assert that the response redirects to the expected path (e.g., homepage)
+    $response->assertRedirect('/listing');
 });

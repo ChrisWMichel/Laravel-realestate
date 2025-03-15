@@ -46,7 +46,7 @@ Route::resource('user-account', UserAccountController::class)->only('create', 's
 
 Route::get('/email/verify', function(){
     return Inertia::render('Auth/VerifyEmail');
-})->name('verification.notice');
+})->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (VerifyEmailRequest  $request) {
     try {
@@ -76,6 +76,3 @@ Route::post('/email/resend', [AuthController::class, 'resendVerification'])
         return "Cache is cleared";
     });
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
