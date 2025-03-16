@@ -59,9 +59,10 @@
                     </form>
                 </div>
                 <div v-else class="flex items-center gap-2">
+                    <!-- :href="route('login')" -->
                     <Link
                         class="p-1 ml-6 text-sm bg-gray-800 rounded-md hover:bg-gray-600"
-                        :href="route('login')"
+                        href="/login"
                         >Sign In</Link
                     >
                     <Link

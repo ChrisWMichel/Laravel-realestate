@@ -55,7 +55,7 @@ const form = useForm({
     email: null,
     password: null,
 });
-console.log("Login Page", form.email);
+//console.log("Login Page", form.email);
 
 const page = usePage();
 
