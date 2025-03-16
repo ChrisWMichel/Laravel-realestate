@@ -76,10 +76,10 @@
         "isDynamicEntry": true,
         "imports": ["resources/js/app.js", "_BoxShadow-CWPKlGK7.js"]
     },
-    "resources/js/Pages/auth/login.vue": {
+    "resources/js/Pages/Auth/Login.vue": {
         "file": "assets/login-B16O5lEE.js",
         "name": "login",
-        "src": "resources/js/Pages/auth/login.vue",
+        "src": "resources/js/Pages/Auth/Login.vue",
         "isDynamicEntry": true,
         "imports": ["resources/js/app.js", "_InputError-CXHtggFB.js"]
     },
@@ -331,7 +331,7 @@
         "isEntry": true,
         "dynamicImports": [
             "resources/js/Pages/Auth/VerifyEmail.vue",
-            "resources/js/Pages/auth/login.vue",
+            "resources/js/Pages/Auth/Login.vue",
             "resources/js/Pages/Dashboard.vue",
             "resources/js/Pages/Index/index.vue",
             "resources/js/Pages/Index/show.vue",
