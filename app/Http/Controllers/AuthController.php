@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function create()
     {
         //return inertia('Auth/login');
-        return inertia()->render('Auth/login');
+        return inertia()->render('auth/login');
     }
 
     public function store(LoginRequest $request)
