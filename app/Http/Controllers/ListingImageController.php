@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use App\Models\ListingImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ListingImageController extends Controller
@@ -34,33 +35,38 @@ class ListingImageController extends Controller
                 'images.*.max' => 'The image must not be greater than 5MB.'
             ]);
             foreach ($request->file('images') as $image) {
-                $filename = time() . '_' . $image->getClientOriginalName();
-                $image->move(public_path('images'), $filename);
-
-                $listing->images()->save(new ListingImage([
-                    'path' => 'images/' . $filename
-                ]));
-                //$path = $image->store('listing-images', 'public');
-
-                // $listing->images()->save(new ListingImage([
-                //     'path' => $path
-                // ]));
+                $path = $this->saveImage($image);
+                $listing->images()->create([
+                    'path' => $path
+                ]);
             }
         }
 
         return redirect()->back()->with('success', 'Image uploaded successfully.');
-        //return redirect()->route('realtor.listing.index', $listing)->with('success', 'Images uploaded successfully.');
     }
 
     public function destroy($listing, ListingImage $image)
     {
-
-        $appUrl = config('app.url');
-        $relativePath = str_replace($appUrl . '/storage/', '', $image->path);
-
-        Storage::disk('public')->delete($relativePath);
+        // Extract the relative path from the full URL
+        $relativePath = str_replace('https://images-cwm-portfolio.s3.us-east-2.amazonaws.com/', '', $image->path);
+    
+        Storage::disk('s3')->delete($relativePath);
+    
         $image->delete();
+    
         return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
+    private function saveImage($image)
+    {
+        $file = $image;
+        $filename = time() . '-' . $file->getClientOriginalName();
+
+        $path = Storage::disk('s3')->putFileAs('images/realtor', $file, $filename);
+
+        $url = Storage::disk('s3')->url($path);
+        
+        return $url;
     }
 
 

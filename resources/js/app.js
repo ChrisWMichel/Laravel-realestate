@@ -12,10 +12,6 @@ const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
-        // Add debugging to see what's being passed
-        console.log("Resolving component:", name);
-
-        // Clean the name by removing any escape characters
         const cleanName = name.replace(/\\/g, "");
 
         return resolvePageComponent(
